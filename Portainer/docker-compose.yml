@@ -1,0 +1,26 @@
+
+services:
+  portainer:
+    image: portainer/portainer-ce
+    container_name: portainer
+    ports:
+      - "9001:9000"
+      - "9443:9443"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./portainer_data:/data
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.portainer.rule=PathPrefix(`/portainer`)"
+      - "traefik.http.services.portainer.loadbalancer.server.port=9000"
+      - "traefik.http.middlewares.portainer-stripprefix.stripprefix.prefixes=/portainer"
+      - "traefik.http.routers.portainer.middlewares=portainer-stripprefix@docker"
+      # - "traefik.http.routers.portainer.middlewares=portainer-stripprefix@docker, auth-basic@docker"
+      # - "traefik.http.middlewares.auth-basic.basicauth.users=admin:$2y$05$dVJqEWPx7WVjdAVjTuBdQOecAyhjT1h8yCOaub7jtRZmUhs9Fct8O"
+    networks:
+      - api-gateway_traefik
+
+networks:
+  api-gateway_traefik:
+    external: true
+
