@@ -12,7 +12,7 @@ Este projeto utiliza o **Traefik** como um **API Gateway** leve e moderno, junto
 | Serviço   | URL de Acesso                  |
 |-----------|--------------------------------|
 | Traefik Dashboard | [`http://localhost:8080`](http://localhost:8080) |
-| Portainer UI      | [`http://localhost:9000/portainer/#!/auth`](http://localhost:9000/portainer/#!/auth) |
+| Portainer UI      | [`http://localhost:9001/portainer/#!/auth`](http://localhost:9000/portainer/#!/auth) |
 
 ## Acesso ao Portainer
 
